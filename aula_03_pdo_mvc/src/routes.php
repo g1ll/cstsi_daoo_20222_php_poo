@@ -11,6 +11,8 @@ Route::routes([
 
 //api:
 // composer run api
-// composer run test
 //http://localhost:8081/classe/metodo/parametro
-//http://localhost:8081/produto/
+//http://localhost:8081/produto/show/111
+
+// composer run test
+//http://localhost:8081/showProduto.php?id=111
