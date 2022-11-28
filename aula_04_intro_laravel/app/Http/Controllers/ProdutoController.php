@@ -11,8 +11,7 @@ class ProdutoController extends Controller
     {
         $modelProduto = new Produto();
         $produtos = $modelProduto->all();
-        // return response()->json($produtos);
-        return view('produtos', ['produtos' => $produtos]);
+        return view('pages.produto.index', ['produtos' => $produtos]);
     }
 
     public function show($id)
@@ -20,14 +19,14 @@ class ProdutoController extends Controller
 
         // dd(Produto::find($id));
         return view(
-            'produto_single',
+            'pages.produto.single',
             ['produto' => Produto::find($id)]
         );
     }
 
     public function create()
     {
-        return view('produto_create');
+        return view('pages.produto.create');
     }
 
     public function store(Request $request)
@@ -41,7 +40,7 @@ class ProdutoController extends Controller
 
     public function edit($id)
     {
-        return view('produto_edit', ['produto' => Produto::find($id)]);
+        return view('pages.produto.edit', ['produto' => Produto::find($id)]);
     }
 
     public function update(Request $request, $id)
@@ -57,7 +56,7 @@ class ProdutoController extends Controller
     public function delete($id)
     {
         return view(
-            '/produto_delete',
+            'pages.produto.delete',
             ['produto' => Produto::find($id)]
         );
     }
