@@ -1,0 +1,24 @@
+.table tbody tr td{
+    padding: .5rem 2rem ;
+    margin: auto 10px;
+}
+
+.table thead{
+    background-color:gray; color:black
+}
+
+.table-odd tbody tr:nth-child(odd){
+    background-color: lightgray;
+}
+
+.table-hover tbody tr:hover{
+    background-color: darkgrey;
+    color: #303032;
+    font-weight: bolder;
+
+}
+.table-hover tbody tr:hover td{
+    overflow: hidden;
+    word-break:break-all;
+    padding: .5rem 1rem;
+}
