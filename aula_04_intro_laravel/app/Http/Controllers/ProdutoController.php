@@ -11,7 +11,8 @@ class ProdutoController extends Controller
     {
         $modelProduto = new Produto();
         $produtos = $modelProduto->all();
-        return view('pages.produto.index', ['produtos' => $produtos]);
+        return view('pages.produto.index',
+        ['produtos' => $produtos]);
     }
 
     public function show($id)
@@ -50,7 +51,7 @@ class ProdutoController extends Controller
         // dd($updatedProduto);
         if (!Produto::find($id)->update($updatedProduto))
             dd("Erro ao atualizar produto $id!");
-        return redirect('/produtos');
+        return redirect('/dashboard');
     }
 
     public function delete($id)
