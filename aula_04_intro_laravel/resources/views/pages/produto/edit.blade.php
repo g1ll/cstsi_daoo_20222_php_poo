@@ -1,4 +1,4 @@
-<x-main-layout>
+<x-dash-layout>
     <h1>Insert new Produto</h1>
     <form id=edit action="{{route('update',$produto->id)}}" method="POST">
         @csrf
@@ -26,5 +26,5 @@
         </table>
     </form>
     <input form=edit type="submit" name='confirmar' value="Salvar"/>
-    <a href="/produtos"><button>Cancelar</button></a>
-</x-main-layout>
+    <a href="/dashboard"><button>Cancelar</button></a>
+</x-dash-layout>
