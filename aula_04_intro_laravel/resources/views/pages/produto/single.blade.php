@@ -2,7 +2,7 @@
     @vite('resources/css/show-prod.css')
     @if ($produto)
         <div>
-            <h1>{{ $produto->nome }}</h1>
+            <h1 class='text-4xl font-bold'>{{ $produto->nome }}</h1>
             <p>{{ $produto->descricao }}</p>
             <table>
                 </thead>
