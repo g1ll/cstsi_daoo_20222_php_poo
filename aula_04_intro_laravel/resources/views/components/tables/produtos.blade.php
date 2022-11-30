@@ -1,4 +1,5 @@
-<table {{$attributes->merge(['class'=>'table table-'.$type])}}>
+<table {{ $attributes->merge(['class' => 'table table-' . $type]) }}>
+    @vite('resources/css/table.css')
     <thead>
         <tr>
             <th>Id</th>
@@ -6,7 +7,9 @@
             <th>qtd_estoque</th>
             <th>preco</th>
             <th>Importado</th>
-            <th>Acoes</th>
+            @if(Auth::user() && Route::is('dashboard'))
+                <th>Acoes</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -20,9 +23,11 @@
                 <td align="center">
                     <input type="checkbox" disabled {{ $produto->importado ? 'checked' : '' }}>
                 </td>
-                <td><a href="{{ route('edit', $produto->id) }}">editar</a> |
-                    <a href="{{ route('delete', $produto->id) }}">deletar</a>
-                </td>
+                @if(Auth::user() && Route::is('dashboard'))
+                    <td><a href="{{ route('edit', $produto->id) }}">editar</a> |
+                        <a href="{{ route('delete', $produto->id) }}">deletar</a>
+                    </td>
+                @endif
             </tr>
         @endforeach
     </tbody>
