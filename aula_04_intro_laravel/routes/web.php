@@ -29,3 +29,25 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::controller(ProdutoController::class)
+    ->group(function () {
+
+        Route::prefix('/produtos')->group(function () {
+            Route::get('/', 'index')->name('produtos');
+            Route::get('/{id}', 'show');
+        });
+
+        Route::prefix('/produto')
+            ->middleware('auth')
+            ->group(function () {
+                Route::get('/', 'create');
+                Route::post('/', 'store');
+
+                Route::get('/{id}/edit', 'edit')->name('edit');
+                Route::post('/{id}/update', 'update')->name('update');
+
+                Route::get('/{id}/delete', 'delete')->name('delete');
+                Route::post('/{id}/remove', 'remove')->name('remove');
+            });
+    });
