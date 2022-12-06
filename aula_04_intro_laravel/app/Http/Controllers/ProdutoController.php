@@ -68,6 +68,6 @@ class ProdutoController extends Controller
         if ($request->confirmar == 'Deletar')
             if (!Produto::destroy($id))
                 dd("Error ao deletar produto $id.");
-        return redirect('/produtos');
+        return redirect('/dashboard');
     }
 }
