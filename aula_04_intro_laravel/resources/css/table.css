@@ -20,5 +20,4 @@
 .table-hover tbody tr:hover td{
     overflow: hidden;
     word-break:break-all;
-    padding: .5rem 1rem;
 }
