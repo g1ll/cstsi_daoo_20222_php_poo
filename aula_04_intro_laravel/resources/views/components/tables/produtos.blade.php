@@ -15,8 +15,14 @@
     <tbody>
         @foreach ($produtos as $produto)
             <tr>
-                <td><a href="/produtos/{{ $produto->id }}">{{ $produto->id }}</a></td>
-                <td>{{ $produto->nome }}</td>
+                @if(Auth::user() && Route::is('dashboard'))
+                     <td><a href="{{route('produto.single-dash',$produto->id) }}">{{ $produto->id }}</a></td>
+                     <td><a href="{{route('produto.single-dash',$produto->id) }}">{{ $produto->nome }}</a></td>
+                @else
+                    <td><a href="/produtos/{{ $produto->id }}">{{ $produto->id }}</a></td>
+                    <td><a href="/produtos/{{ $produto->id }}">{{ $produto->nome }}</a></td>
+                @endif
+                
                 <td>{{ $produto->qtd_estoque }}</td>
                 <td>{{ $produto->preco }}</td>
                 {{-- <td>{{($produto->importado)?'Sim':'Não'}}</td> --}}
