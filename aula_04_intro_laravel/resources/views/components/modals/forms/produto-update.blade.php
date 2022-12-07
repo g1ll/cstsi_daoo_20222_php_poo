@@ -1,4 +1,3 @@
-{{-- <div class=" w-fit h-auto m-2 p-3 drop-shadow-2xl bg-white self-center rounded-md pt-6"> --}}
 <div class="flex flex-col justify-center w-fit shadow dark:bg-gray-700 h-fit m-0 p-3 bg-white self-center rounded-md">
     <div x-data="{
         produto: @js($produto),
@@ -23,9 +22,6 @@
         },
     }" x-init="start()">
         <form @submit.prevent="update()" id="produto-update-{{ $produto->id }}">
-            {{-- @csrf --}}
-            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"/> --}}
-            {{-- <input x-model="produto.id" type="hidden" name="id" value={{$produto->id}} /> --}}
             <table>
                 <tr>
                     <td>Nome:</td>
