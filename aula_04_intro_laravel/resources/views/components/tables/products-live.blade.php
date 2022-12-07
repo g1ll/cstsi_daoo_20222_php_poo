@@ -1,5 +1,4 @@
 <div x-data="{
-    open: false,
     idmodal:null,
 }">
 <table {{ $attributes->merge(['class' => 'table table-' . $type]) }}>
@@ -53,6 +52,7 @@
         @endforeach
     </tbody>
 </table>
+
 @foreach ($produtos as $produto)
     <x-modals.produto-modal
         id="{{'modal-rm-'.$produto->id}}"
@@ -62,6 +62,7 @@
         <x-modals.forms.produto-remove :produto="$produto"/>
     </x-forms.produto-modal>
 @endforeach
+
 @foreach ($produtos as $produto)
     <x-modals.produto-modal
         id="{{'modal-upd-'.$produto->id}}"
@@ -71,4 +72,5 @@
         <x-modals.forms.produto-update :produto="$produto"/>
     </x-forms.produto-modal>
 @endforeach
+
 <div>
