@@ -1,7 +1,7 @@
 <div x-data="{ open: false }">
     @if (isset($produtos) && $produtos->count() > 0)
-        <div style="display:flex; flex-direction: row; justify-content:flex-end">
-            <button @click="open = true">Criar Novo Produto</button>
+        <div class="py-3 pr-5 flex justify-end">
+            <x-primary-button @click="open = true">Novo Produto</x-primary-button>
         </div>
         <!-- CONTEÚDO DO MODAL-->
         <div x-cloak>
