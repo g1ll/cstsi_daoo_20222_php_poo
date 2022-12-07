@@ -7,7 +7,7 @@
             <th>qtd_estoque</th>
             <th><a href="#" wire:click='orderByPrice'>Preco</a></th>
             <th>Importado</th>
-            @if(Auth::user() && Route::is('dashboard'))
+            @if(Auth::user())
                 <th>Acoes</th>
             @endif
         </tr>
@@ -15,7 +15,7 @@
     <tbody>
         @foreach ($produtos as $produto)
             <tr>
-                @if(Auth::user() && Route::is('dashboard'))
+                @if(Auth::user())
                      <td><a href="{{route('produto.single-dash',$produto->id) }}">{{ $produto->id }}</a></td>
                      <td><a href="{{route('produto.single-dash',$produto->id) }}">{{ $produto->nome }}</a></td>
                 @else
@@ -29,7 +29,7 @@
                 <td align="center">
                     <input type="checkbox" disabled {{ $produto->importado ? 'checked' : '' }}>
                 </td>
-                @if(Auth::user() && Route::is('dashboard'))
+                @if(Auth::user())
                     <td><a href="{{ route('edit', $produto->id) }}">editar</a> |
                         <a href="{{ route('delete', $produto->id) }}">deletar</a>
                     </td>
