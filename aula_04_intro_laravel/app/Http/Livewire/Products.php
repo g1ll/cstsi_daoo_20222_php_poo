@@ -5,11 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Produto;
 use Exception;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class Products extends Component
 {
     public $produtos;
-    public $orderAsc=true;
+    public $orderAsc = true;
+    public $orderColumn = 'id';
 
     public $nome;
     public $descricao;
@@ -24,13 +26,20 @@ class Products extends Component
         return view('livewire.products');
     }
 
-    public function orderBy($column='id')
+    public function orderBy($column = 'id')
     {
-        $this->produtos = Produto::orderBy($column, $this->orderAsc ? 'asc' : 'desc')->get();
+        $this->orderColumn = $column;
+        $this->produtos = Produto::orderBy(
+            $this->orderColumn,
+            $this->orderAsc ? 'asc' : 'desc'
+        )->get();
         $this->orderAsc = !$this->orderAsc;
+        //debugando variavel na saida do servidor
+        Log::channel('stderr')->info($this->orderAsc?'asc':'desc');
     }
 
-    public function orderByName(){
+    public function orderByName()
+    {
         $this->orderBy('nome');
     }
 
@@ -51,12 +60,12 @@ class Products extends Component
 
         // dd($produto);
 
-        try{
+        try {
             Produto::create($produto);
             $this->clear();
             $this->orderAsc = false;
             $this->orderBy();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             dd('Erro ao inserir');
         }
     }
@@ -68,5 +77,13 @@ class Products extends Component
         $this->preco = 0;
         $this->quantidade = 0;
         $this->importado = null;
+    }
+
+    public function remove($id)
+    {
+        if (!Produto::destroy($id))
+            return "Erro!";
+        $this->orderAsc = !$this->orderAsc;
+        $this->orderBy($this->orderColumn);
     }
 }
