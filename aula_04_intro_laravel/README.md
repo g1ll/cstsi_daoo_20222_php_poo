@@ -1,3 +1,74 @@
+## Repositório de Exemplos da Disciplina de DAOO
+
+
+### Instalação e Configuração
+Comandos após o clone: 
+
+Instalar dependências PHP com o composer:
+```bash
+composer install
+```
+
+Instalar dependências JS para o framework e bundler Vite com o NPM:
+```bash
+npm install
+```
+
+Crie um novo arquivo .env com as configurações de Banco de Dados
+
+```bash
+...
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=aula_04_intro_laravel
+DB_USERNAME=root
+DB_PASSWORD=
+...
+```
+Siga  o .env.example
+
+Gere a APP_KEY através do artisan
+
+```bash
+php artisan key:generate
+```
+Para as branchs da aula 6 em diante
+Crie o usuário padrão do breeze descomentando as linhas do arquivo DatabaseSeeder.php
+[./database/seeder/DataBaseSeeder.php](./database/seeder/DataBaseSeeder.php)
+
+```php
+    public function run()
+    {
+        // \App\Models\User::factory(10)->create();
+
+        \App\Models\User::factory()->create([
+            'name' => 'User Aula 06',
+            'email' => 'aula@example.com',
+        ]);
+    }
+```
+A senha padrão está no arquivo factory do user; 
+[./database/seeder/DataBaseSeeder.php](./database/seeder/DataBaseSeeder.php)
+
+### Inicializando o Servidor de Desenvolvimento
+
+Para inicializar o servidor com o artisan utilize o seguinte comando:
+
+```bash
+php artisan serve --port:8000
+```
+na variável ***port*** use o mesmo número configurado no  arquivo .env;
+
+Para inicializar o servidor de desenvolvimento do vite com recarregamento automático (hot-reload) utilize o seguinte comando:
+
+```bash
+npm run dev
+```
+
+__________________________________
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
