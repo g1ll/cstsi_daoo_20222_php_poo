@@ -3,6 +3,10 @@
     margin: auto 10px;
 }
 
+.table td.actions {
+    padding: .5rem 0.5rem ;
+}
+
 .table thead{
     background-color:gray; color:black
 }
