@@ -1,3 +1,7 @@
+<div x-data="{
+    open: false,
+    idmodal:null,
+}">
 <table {{ $attributes->merge(['class' => 'table table-' . $type]) }}>
     @vite('resources/css/table.css')
     <thead>
@@ -7,17 +11,17 @@
             <th>qtd_estoque</th>
             <th><a href="#" wire:click='orderByPrice'>Preco</a></th>
             <th>Importado</th>
-            @if(Auth::user())
-                <th>Acoes</th>
+            @if (Auth::user())
+                <th colspan="2">Acoes</th>
             @endif
         </tr>
     </thead>
     <tbody>
         @foreach ($produtos as $produto)
             <tr>
-                @if(Auth::user())
-                     <td><a href="{{route('produto.single-dash',$produto->id) }}">{{ $produto->id }}</a></td>
-                     <td><a href="{{route('produto.single-dash',$produto->id) }}">{{ $produto->nome }}</a></td>
+                @if (Auth::user())
+                    <td><a href="{{ route('produto.single-dash', $produto->id) }}">{{ $produto->id }}</a></td>
+                    <td><a href="{{ route('produto.single-dash', $produto->id) }}">{{ $produto->nome }}</a></td>
                 @else
                     <td><a href="/produtos/{{ $produto->id }}">{{ $produto->id }}</a></td>
                     <td><a href="/produtos/{{ $produto->id }}">{{ $produto->nome }}</a></td>
@@ -29,12 +33,28 @@
                 <td align="center">
                     <input type="checkbox" disabled {{ $produto->importado ? 'checked' : '' }}>
                 </td>
-                @if(Auth::user())
-                    <td><a href="{{ route('edit', $produto->id) }}">editar</a> |
-                        <a href="{{ route('delete', $produto->id) }}">deletar</a>
+                @if (Auth::user())
+                    <td class='actions'><a href="{{ route('edit', $produto->id) }}">editar</a> </td>
+                    <td class='actions'>
+                        {{-- <a href="{{ route('delete', $produto->id) }}">deletar</a> --}}
+                        <x-danger-button class='px-2 py-1 mx-0 my-0'
+                        @click=" idmodal = 'modal-rm-{{ $produto->id }}'">
+                            Remover
+                        </x-danger-button>
                     </td>
                 @endif
             </tr>
         @endforeach
     </tbody>
 </table>
+@foreach ($produtos as $produto)
+    <x-modals.produto-modal
+        id="{{'modal-rm-'.$produto->id}}"
+        trigger="idmodal"
+        >
+        <x-slot name="title">Remover Produtos </x-slot>
+          REMOVER PRODUTO {{$produto->id}}
+          <x-modals.forms.produto-remove :produto="$produto"/>
+    </x-forms.produto-modal>
+@endforeach
+<div>
