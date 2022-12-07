@@ -86,4 +86,20 @@ class Products extends Component
         $this->orderAsc = !$this->orderAsc;
         $this->orderBy($this->orderColumn);
     }
+
+    public function update($id)
+    {
+
+        $produto= [
+            'nome' => $this->nome,
+            'descricao' => $this->descricao,
+            'preco' => $this->preco,
+            'qtd_estoque' => $this->quantidade,
+            'importado' => $this->importado
+        ];
+        Produto::findOrFail($id)->update($produto);
+        $this->orderAsc = !$this->orderAsc;
+        $this->orderBy($this->orderColumn);
+        $this->clear();
+    }
 }
