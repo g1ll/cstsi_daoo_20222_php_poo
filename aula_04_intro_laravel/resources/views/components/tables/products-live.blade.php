@@ -34,7 +34,13 @@
                     <input type="checkbox" disabled {{ $produto->importado ? 'checked' : '' }}>
                 </td>
                 @if (Auth::user())
-                    <td class='actions'><a href="{{ route('edit', $produto->id) }}">editar</a> </td>
+                    <td class='actions'>
+                        {{-- <a href="{{ route('edit', $produto->id) }}">editar</a> --}}
+                        <x-primary-button class='px-2 py-1 mx-0 my-0'
+                        @click=" idmodal = 'modal-upd-{{ $produto->id }}'">
+                            Atualizar
+                        </x-primary-button>
+                    </td>
                     <td class='actions'>
                         {{-- <a href="{{ route('delete', $produto->id) }}">deletar</a> --}}
                         <x-danger-button class='px-2 py-1 mx-0 my-0'
@@ -52,9 +58,17 @@
         id="{{'modal-rm-'.$produto->id}}"
         trigger="idmodal"
         >
-        <x-slot name="title">Remover Produtos </x-slot>
-          REMOVER PRODUTO {{$produto->id}}
-          <x-modals.forms.produto-remove :produto="$produto"/>
+        <x-slot name="title">{{$produto->nome.' ('.$produto->id.')'}}</x-slot>
+        <x-modals.forms.produto-remove :produto="$produto"/>
+    </x-forms.produto-modal>
+@endforeach
+@foreach ($produtos as $produto)
+    <x-modals.produto-modal
+        id="{{'modal-upd-'.$produto->id}}"
+        trigger="idmodal"
+        >
+        <x-slot name="title">{{$produto->nome.' ('.$produto->id.')'}}</x-slot>
+        <x-modals.forms.produto-update :produto="$produto"/>
     </x-forms.produto-modal>
 @endforeach
 <div>
