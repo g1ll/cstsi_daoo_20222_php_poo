@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center w-fit shadow dark:bg-gray-700 h-auto m-0 p-3 bg-white self-center rounded-md">
+<div class="flex flex-col justify-center w-fit dark:bg-gray-700 h-auto m-0 p-3 bg-white self-center">
     <p>{{ $produto->descricao }}</p>
     <ul>
         <li>Quantidade: {{ $produto->qtd_estoque }}</li>
