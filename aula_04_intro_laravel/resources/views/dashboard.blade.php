@@ -11,12 +11,11 @@
                 <div class="p-6 text-gray-900">
                     <h2 class='text-4xl'>Produtos</h2>
                     @if (isset($produtos) && $produtos->count() > 0)
+
+                        <div style="display:flex; flex-direction: row; justify-content:flex-end">
+                            <a href="/produto"><button>Criar Novo Produto</button></a>
+                        </div>
                         <x-tables.produtos :produtos="$produtos" class='table-odd' type='hover' />
-                        @auth
-                            <div style="display:flex; flex-direction: row; justify-content:flex-end">
-                                <a href="/produto"><button>Criar Novo Produto</button></a>
-                            </div>
-                        @endauth
                     @else
                         <p>Produtos não encontrados! </p>
                     @endif
