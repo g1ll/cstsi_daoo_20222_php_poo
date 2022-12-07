@@ -3,7 +3,6 @@
         <div style="display:flex; flex-direction: row; justify-content:flex-end">
             <button @click="open = true">Criar Novo Produto</button>
         </div>
-
         <!-- CONTEÚDO DO MODAL-->
         <div x-cloak>
             <div x-show="open"
@@ -42,8 +41,10 @@
                         </table>
                     </form>
                     {{-- <input type="submit" value="Criar" form=create /> --}}
-                    <x-primary-button @click="open=false" class='w-30' form='create'>Criar</x-primary-button>
-                    <x-secondary-button @click="open=false" class='w-30'>Cancelar</x-secondary-button>
+                    <div class='flex justify-center gap-24 w-full'>
+                        <x-secondary-button @click="open=false" class='w-30'>Cancelar</x-secondary-button>
+                        <x-primary-button @click="open=false" class='w-30' form='create'>Criar</x-primary-button>
+                    </div>
                 </div>
             </div>
         </div>
