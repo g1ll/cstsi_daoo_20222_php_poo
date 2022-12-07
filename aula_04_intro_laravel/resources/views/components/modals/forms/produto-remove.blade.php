@@ -1,7 +1,4 @@
-<div class="flex flex-col justify-center w-1/2 shadow dark:bg-gray-700 h-auto m-0 p-3 bg-white self-center rounded-md">
-    <div class="p-2 mb-2 border-b-2 border-gray-300 ">
-        <h1 class="text-2xl">{{ $produto->nome }}</h1>
-    </div>
+<div class="flex flex-col justify-center w-fit shadow dark:bg-gray-700 h-auto m-0 p-3 bg-white self-center rounded-md">
     <p>{{ $produto->descricao }}</p>
     <ul>
         <li>Quantidade: {{ $produto->qtd_estoque }}</li>
@@ -14,7 +11,9 @@
     <table>
         <tr align="center">
             <td>
-                <button class='btn btn-info' @click="idmodal=null">Cancelar</button></a>
+                <x-secondary-button  @click="idmodal=null">
+                    Cancelar
+                </x-secondary-button>
             </td>
             <td>
                 <x-danger-button
