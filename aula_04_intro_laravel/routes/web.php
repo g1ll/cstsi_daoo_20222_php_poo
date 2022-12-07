@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('landing',['produtos'=>Produto::all()]);
+})->name('landing');
 
 Route::get('/dashboard', function () {
     return view('dashboard',
@@ -45,7 +45,7 @@ Route::controller(ProdutoController::class)
 
         Route::prefix('/produtos')->group(function () {
             Route::get('/', 'index')->name('produtos');
-            Route::get('/{id}', 'show');
+            Route::get('/{id}', 'show')->name('single');
         });
 
         Route::prefix('/produto')
