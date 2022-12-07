@@ -1,6 +1,6 @@
 <div>
     @if (isset($produtos) && $produtos->count() > 0)
-        <x-tables.produtos :produtos="$produtos" class='table-odd' type='hover' />
+        <x-tables.products-live :produtos="$produtos" class='table-odd' type='hover' />
         @auth
             <div style="display:flex; flex-direction: row; justify-content:flex-end">
                 <a href="/produto"><button>Criar Novo Produto</button></a>
