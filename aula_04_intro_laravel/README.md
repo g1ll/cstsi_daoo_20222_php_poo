@@ -34,7 +34,7 @@ Gere a APP_KEY através do artisan
 php artisan key:generate
 ```
 Para as branchs da aula 6 em diante crie o usuário padrão do breeze descomentando as linhas do arquivo DatabaseSeeder.php
-[database/seeder/DataBaseSeeder.php](database/seeder/DataBaseSeeder.php)
+[database/seeders/DataBaseSeeder.php](database/seeder/DataBaseSeeder.php)
 
 ```php
     public function run()
@@ -48,7 +48,7 @@ Para as branchs da aula 6 em diante crie o usuário padrão do breeze descomenta
     }
 ```
 A senha padrão está no arquivo factory do user; 
-[database/seeder/DataBaseSeeder.php](database/seeder/DataBaseSeeder.php)
+[database/factories/UserFactory.php](database/factories/UserFactory.php)
 
 ### Inicializando o Servidor de Desenvolvimento
 
