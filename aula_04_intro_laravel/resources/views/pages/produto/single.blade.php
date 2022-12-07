@@ -34,7 +34,7 @@
         <p>Produtos não encontrados! </p>
     @endif
     <div>
-        <a href="/produtos">&#9664;Voltar</a>
+        <a href="/">&#9664;Voltar</a>
     </div>
 </div>
 </x-main-layout>
