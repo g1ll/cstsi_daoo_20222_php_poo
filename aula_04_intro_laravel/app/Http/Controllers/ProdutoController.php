@@ -35,7 +35,7 @@ class ProdutoController extends Controller
         $newProduto = $request->all();
         $newProduto['importado'] = ($request->importado) ? true : false;
         if (Produto::create($newProduto))
-            return redirect('/produtos');
+            return redirect('/dashboard');
         else dd("Error ao criar produto!!");
     }
 
