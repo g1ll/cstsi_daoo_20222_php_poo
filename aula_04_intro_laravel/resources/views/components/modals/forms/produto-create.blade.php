@@ -1,8 +1,8 @@
 <div x-cloak>
     <div x-show="open"
         x-bind:class="!open ? 'hidden' :
-            'overflow-y-auto overflow-x-hidden pl-60 fixed top-0 right-0 left-0 z-50 h-modal md:h-full bg-gray-900/25'">
-        <div class="flex rounded-md p-5 justify-center flex-col w-fit min-w-min mt-10 bg-white"
+            'overflow-y-auto overflow-x-hidden flex justify-center fixed top-0 right-0 left-0 z-50 h-modal md:h-full bg-gray-900/25'">
+        <div class="flex rounded-md p-5 flex-col justify-center w-fit min-w-min mt-10 bg-white"
             @click.away="open = false">
             <h1 class='text-center text-2xl font-bold pb-4 mb-4 border-b-2 border-gray-300'>Novo Produto</h1>
             <form id=create @submit.prevent="$wire.save()" method="POST">

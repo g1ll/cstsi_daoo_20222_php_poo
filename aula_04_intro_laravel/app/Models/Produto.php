@@ -16,6 +16,4 @@ class Produto extends Model
         "preco",
         "importado"
     ];
-
-
 }
