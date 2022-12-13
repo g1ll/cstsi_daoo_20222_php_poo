@@ -18,18 +18,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing',['produtos'=>Produto::all()]);
+    return view('landing', ['produtos' => Produto::all()]);
 })->name('landing');
 
 Route::get('/dashboard', function () {
-    return view('dashboard',
-        ['produtos'=>Produto::all(),
-         'users'=>User::all()
-        ]);
+    return view(
+        'dashboard',
+        [
+            'produtos' => Produto::all(),
+            'users' => User::all()
+        ]
+    );
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard/produto/{id}', function ($id) {
-    return view('pages.produto.single-dash',['produto'=>Produto::find($id) ]);
+    return view('pages.produto.single-dash', ['produto' => Produto::find($id)]);
 })->middleware(['auth', 'verified'])->name('produto.single-dash');
 
 Route::middleware('auth')->group(function () {
@@ -38,19 +41,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::controller(ProdutoController::class)
     ->group(function () {
-
         Route::prefix('/produtos')->group(function () {
-            Route::get('/', 'index')->name('produtos');
+            Route::get('/', 'index')->name('produtos')->middleware('auth');
             Route::get('/{id}', 'show')->name('single');
         });
-
         Route::prefix('/produto')
             ->middleware('auth')
             ->group(function () {
+
                 Route::get('/', 'create');
                 Route::post('/', 'store');
 
