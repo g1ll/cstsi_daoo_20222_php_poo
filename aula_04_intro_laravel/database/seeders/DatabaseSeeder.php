@@ -26,8 +26,12 @@ class DatabaseSeeder extends Seeder
 
         (new EstadoSeeder)->run();
 
-        \App\Models\Fornecedor::factory(fake()->randomNumber(2))
-                ->hasProdutos(fake()->randomNumber(1))
-                ->create();
+        // \App\Models\Fornecedor::factory(fake()->randomNumber(2))
+        //     ->hasProdutos(fake()->randomNumber(1))
+        //     ->create();
+
+        \App\Models\Fornecedor::factory(5)
+            ->hasProdutos(10)
+            ->create();
     }
 }
