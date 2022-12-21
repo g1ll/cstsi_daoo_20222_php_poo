@@ -28,4 +28,12 @@ class ProdutoRequest extends FormRequest
             'importado' => 'nullable | boolean'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'qtd_estoque'=>'Insira ao menos um produto no estoque!',
+            'importado'=>'O campo importado deve ser booleano, usar 0 ou 1.'
+        ];
+    }
 }
