@@ -9,15 +9,15 @@ use \Exception;
 
 class ProdutoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Produto::all());
+        $perPage = $request->query('per_page');
+        $paginateProdutos = Produto::paginate($perPage);
+        $paginateProdutos->appends([
+            'per_page'=>$perPage
+        ]);
+        return response()->json($paginateProdutos);
     }
-
-    // public function show($id)
-    // {
-    //     return response()->json(Produto::find($id));
-    // }
 
     public function show($id)
     {
