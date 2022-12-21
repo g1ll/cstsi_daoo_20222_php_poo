@@ -13,9 +13,14 @@ class FornecedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Fornecedor::all());
+        $perPage = $request->query('per_page');
+        $paginateFornecedor = Fornecedor::paginate($perPage);
+        $paginateFornecedor->appends([
+            'per_page'=>$perPage
+        ]);
+        return response()->json($paginateFornecedor);
     }
 
     /**
@@ -68,7 +73,7 @@ class FornecedorController extends Controller
             $fornecedor->update($data);
             return response()->json([
                 'message' => 'Fornecedor atualizado com sucesso!',
-                'produto' => $fornecedor
+                'Fornecedor' => $fornecedor
             ]);
         } catch (\Exception $error) {
             $message = [
@@ -106,10 +111,10 @@ class FornecedorController extends Controller
         }
     }
 
-    public function produtos(Fornecedor $fornecedor)
+    public function Fornecedors(Fornecedor $fornecedor)
     {
         return response()->json([
-            ['fornecedor'=>$fornecedor->load('produtos')]
+            ['fornecedor'=>$fornecedor->load('Fornecedors')]
         ]);
     }
 }
