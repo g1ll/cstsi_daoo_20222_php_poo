@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -31,10 +32,10 @@ class FornecedorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Fornecedor  $fornecedor
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Fornecedor $fornecedor)
     {
         //
     }
@@ -43,10 +44,10 @@ class FornecedorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Fornecedor  $fornecedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Fornecedor $fornecedor)
     {
         //
     }
@@ -54,10 +55,10 @@ class FornecedorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Fornecedor  $fornecedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Fornecedor $fornecedor)
     {
         //
     }
