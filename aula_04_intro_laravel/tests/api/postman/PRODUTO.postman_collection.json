@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "43d547d7-332e-42bb-bc1d-d6f1904e9a3b",
+		"name": "PRODUTOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8976781"
+	},
+	"item": [
+		{
+			"name": "INDEX",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/produto/434",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produto",
+						"434"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "STORE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nome",
+							"value": "API PRODUTO TESTE III",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "Testando insercao produto Api",
+							"type": "text"
+						},
+						{
+							"key": "qtd_estoque",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "preco",
+							"value": "159.99",
+							"type": "text"
+						},
+						{
+							"key": "importado",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "fornecedor_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "API PRODUTO TEST",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "Testando insercao produto Api UPDATED",
+							"type": "text"
+						},
+						{
+							"key": "qtd_estoque",
+							"value": "400",
+							"type": "text"
+						},
+						{
+							"key": "preco",
+							"value": "259.99",
+							"type": "text"
+						},
+						{
+							"key": "importado",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "fornecedor_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/produto/434",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produto",
+						"434"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REMOVE",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/produto/434",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produto",
+						"434"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

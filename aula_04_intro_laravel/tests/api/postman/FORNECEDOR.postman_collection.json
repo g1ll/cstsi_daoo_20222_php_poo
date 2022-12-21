@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "ae015d76-3335-4043-8e2e-6d7a28698164",
+		"name": "FORNECEDOR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8976781"
+	},
+	"item": [
+		{
+			"name": "INDEX",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/fornecedor/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fornecedor",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "STORE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": " Fornecedor Teste",
+							"type": "text"
+						},
+						{
+							"key": "cnpj",
+							"value": " 32165498765",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": " teste@forncedor.com",
+							"type": "text"
+						},
+						{
+							"key": "estado_id",
+							"value": " 21",
+							"type": "text"
+						},
+						{
+							"key": "telefone",
+							"value": " (53)99999999",
+							"type": "text"
+						},
+						{
+							"key": "endereco",
+							"value": " Rua Aasdfasd asdfas dfnr 454",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/fornecedor/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fornecedor",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/fornecedor/82",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fornecedor",
+						"82"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT UPDATE (FORM DATA)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "_method",
+							"value": "put",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": " Fornecedor Teste UPDATED",
+							"type": "text"
+						},
+						{
+							"key": "cnpj",
+							"value": " 32165498765",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": " teste@forncedor.com",
+							"type": "text"
+						},
+						{
+							"key": "estado_id",
+							"value": " 21",
+							"type": "text"
+						},
+						{
+							"key": "telefone",
+							"value": " (53)888888888",
+							"type": "text"
+						},
+						{
+							"key": "endereco",
+							"value": " Rua Aasdfasd asdfas dfnr 454 UPDATED",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/fornecedor/82",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fornecedor",
+						"82"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE (URL ENCODED)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": " Fornecedor Teste PUT",
+							"type": "text"
+						},
+						{
+							"key": "cnpj",
+							"value": " 32165498765",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": " teste@forncedor.com",
+							"type": "text"
+						},
+						{
+							"key": "estado_id",
+							"value": " 21",
+							"type": "text"
+						},
+						{
+							"key": "telefone",
+							"value": " (53)888888888",
+							"type": "text"
+						},
+						{
+							"key": "endereco",
+							"value": " Rua Aasdfasd asdfas dfnr 454 UPDATED",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/fornecedor/82",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fornecedor",
+						"82"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DESTROY",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/fornecedor/82",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fornecedor",
+						"82"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FORNECEDOR/PRODUTOS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/fornecedor/81/produtos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fornecedor",
+						"81",
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
