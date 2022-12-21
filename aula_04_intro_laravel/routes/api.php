@@ -27,3 +27,7 @@ Route::put('produto/{id}',[ProdutoController::class,'update']);
 Route::delete('produto/{id}',[ProdutoController::class,'remove']);
 
 Route::apiResource('fornecedor',FornecedorController::class);
+Route::get('fornecedor/{fornecedor}/produtos',
+        [FornecedorController::class,
+        'produtos'
+    ]);
