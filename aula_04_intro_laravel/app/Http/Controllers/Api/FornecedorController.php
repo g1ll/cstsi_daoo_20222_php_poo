@@ -15,7 +15,7 @@ class FornecedorController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Fornecedor::all());
     }
 
     /**
