@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\FornecedorController;
 use App\Http\Controllers\Api\ProdutoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,5 @@ Route::get('produto/{id}',[ProdutoController::class,'show']);
 Route::post('produto',[ProdutoController::class,'store']);
 Route::put('produto/{id}',[ProdutoController::class,'update']);
 Route::delete('produto/{id}',[ProdutoController::class,'remove']);
+
+Route::apiResource('fornecedor',FornecedorController::class);
