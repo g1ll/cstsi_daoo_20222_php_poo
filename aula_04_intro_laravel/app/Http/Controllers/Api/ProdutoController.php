@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use \Exception;
@@ -33,13 +34,9 @@ class ProdutoController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
         try{
-            $request->validate([
-                'qtd_estoque'=> 'required | min:1 | numeric ',
-                'importado' => 'nullable | boolean'
-            ]);
             $newProduto = $request->all();
             $newProduto['importado'] = $request->has('importado');
             $storedProduto = Produto::create($newProduto);
