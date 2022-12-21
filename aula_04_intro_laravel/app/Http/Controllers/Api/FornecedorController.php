@@ -26,7 +26,21 @@ class FornecedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $newFornecedor = $request->all();
+            $storedFornecedor = Fornecedor::create($newFornecedor);
+            return response()->json([
+                'message' => 'Fornecedor cadastrado com sucesso!',
+                'Fornecedor' => $storedFornecedor
+            ]);
+        } catch (\Exception $error) {
+            $message = [
+                "Erro:" => "Erro ao cadastrar novo Fornecedor",
+                "Exception:" => $error->getMessage()
+            ];
+            $status = 401; //bad request
+            return response()->json($message, $status);
+        }
     }
 
     /**
@@ -37,7 +51,7 @@ class FornecedorController extends Controller
      */
     public function show(Fornecedor $fornecedor)
     {
-        //
+        return response()->json(['fornecedor' => $fornecedor]);
     }
 
     /**
@@ -49,7 +63,21 @@ class FornecedorController extends Controller
      */
     public function update(Request $request, Fornecedor $fornecedor)
     {
-        //
+        try {
+            $data = $request->all();
+            $fornecedor->update($data);
+            return response()->json([
+                'message' => 'Fornecedor atualizado com sucesso!',
+                'produto' => $fornecedor
+            ]);
+        } catch (\Exception $error) {
+            $message = [
+                "Erro:" => "Erro ao atualizar fornecedor",
+                "Exception:" => $error->getMessage()
+            ];
+            $status = 401;
+            return response()->json($message, $status);
+        }
     }
 
     /**
@@ -60,6 +88,28 @@ class FornecedorController extends Controller
      */
     public function destroy(Fornecedor $fornecedor)
     {
-        //
+        try {
+            if (!$fornecedor->delete())
+                throw new \Exception("Erro não detectado, tente mais tarde!");
+
+            return response()->json([
+                "msg" => "Fornecedor excluido.",
+                "fornecedor" => $fornecedor
+            ]);
+        } catch (\Exception $error) {
+            $responseError = [
+                'Erro' => "Erro ao deletar o fornecedor!",
+                'Exception' => $error->getMessage()
+            ];
+            $statusHttp = 404;
+            return response()->json($responseError, $statusHttp);
+        }
+    }
+
+    public function produtos(Fornecedor $fornecedor)
+    {
+        return response()->json([
+            ['fornecedor'=>$fornecedor->load('produtos')]
+        ]);
     }
 }
