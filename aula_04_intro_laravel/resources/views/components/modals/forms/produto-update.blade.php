@@ -7,11 +7,12 @@
             if (this.produto.preco &&
                 this.produto.qtd_estoque) {
                 console.log({ produto: this.produto });
-                $wire.set('nome', this.produto.nome)
+                {{-- $wire.set('nome', this.produto.nome)
                 $wire.set('descricao', this.produto.descricao)
                 $wire.set('quantidade', this.produto.qtd_estoque)
                 $wire.set('preco', this.produto.preco)
-                $wire.set('importado', this.produto.importado)
+                $wire.set('importado', this.produto.importado) --}}
+                $wire.set('produto',this.produto)
                 $wire.update(this.produto.id)
             } else {
                 alert('Erro ao atualizar produto!')

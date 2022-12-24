@@ -20,6 +20,7 @@ class Products extends Component
     public $importado;
     public $idprod;
 
+    public $produto;
 
     public function render()
     {
@@ -72,11 +73,7 @@ class Products extends Component
 
     private function clear()
     {
-        $this->nome = '';
-        $this->descricao = '';
-        $this->preco = 0;
-        $this->quantidade = 0;
-        $this->importado = null;
+        $this->produto = [];
     }
 
     public function remove($id)
@@ -89,15 +86,8 @@ class Products extends Component
 
     public function update($id)
     {
-
-        $produto= [
-            'nome' => $this->nome,
-            'descricao' => $this->descricao,
-            'preco' => $this->preco,
-            'qtd_estoque' => $this->quantidade,
-            'importado' => $this->importado
-        ];
-        Produto::findOrFail($id)->update($produto);
+        Log::channel('stderr')->info(print_r($this->produto['nome'],true));
+        Produto::findOrFail($id)->update($this->produto);
         $this->orderAsc = !$this->orderAsc;
         $this->orderBy($this->orderColumn);
         $this->clear();
