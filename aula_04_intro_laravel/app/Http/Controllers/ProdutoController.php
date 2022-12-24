@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Log;
 
 class ProdutoController extends Controller
 {
     public function index()
     {
         $modelProduto = new Produto();
-        $produtos = $modelProduto->all();
+        $produtos = $modelProduto->paginate();
+        Log::channel('stderr')->info(print_r($produtos->items(),true));
         return view('pages.produto.index',
-        ['produtos' => $produtos]);
+        ['produtos' => $modelProduto->all()]);
     }
 
     public function show($id)
