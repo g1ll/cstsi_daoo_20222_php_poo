@@ -8,7 +8,7 @@
             <th>preco</th>
             <th>Importado</th>
             @if(Auth::user() && Route::is('dashboard'))
-                <th>Acoes</th>
+                <th colspan="2">Acoes</th>
             @endif
         </tr>
     </thead>
@@ -22,7 +22,7 @@
                     <td><a href="/produtos/{{ $produto->id }}">{{ $produto->id }}</a></td>
                     <td><a href="/produtos/{{ $produto->id }}">{{ $produto->nome }}</a></td>
                 @endif
-                
+
                 <td>{{ $produto->qtd_estoque }}</td>
                 <td>{{ $produto->preco }}</td>
                 {{-- <td>{{($produto->importado)?'Sim':'Não'}}</td> --}}
@@ -30,8 +30,19 @@
                     <input type="checkbox" disabled {{ $produto->importado ? 'checked' : '' }}>
                 </td>
                 @if(Auth::user() && Route::is('dashboard'))
-                    <td><a href="{{ route('edit', $produto->id) }}">editar</a> |
-                        <a href="{{ route('delete', $produto->id) }}">deletar</a>
+                    <td class='actions'>
+                        <a href="{{ route('edit', $produto->id) }}">
+                            <x-primary-button class='px-2 py-1 mx-0 my-0'>
+                                Atualizar
+                            </x-primary-button>
+                        </a>
+                    </td>
+                    <td class='actions'>
+                        <a href="{{ route('delete', $produto->id) }}">
+                            <x-danger-button class='px-2 py-1 mx-0 my-0'>
+                                Remover
+                            </x-danger-button>
+                        </a>
                     </td>
                 @endif
             </tr>
