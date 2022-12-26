@@ -1,26 +1,22 @@
 <div class="flex flex-col justify-center w-fit shadow dark:bg-gray-700 h-fit m-0 p-3 bg-white self-center rounded-md">
     <div x-data="{
         produto: @js($produto),
+        fornecedores:@js($fornecedores),
         update() {
             this.produto.preco = Number(this.produto.preco)
-            this.produto.qtd_estoque = Number(this.produto.qtd_estoque)
+            this.produto.qtd_estoque = +this.produto.qtd_estoque //equivalente ao cast com Number
+            this.produto.fornecedor_id = +this.produto.fornecedor_id
             if (this.produto.preco &&
                 this.produto.qtd_estoque) {
                 console.log({ produto: this.produto });
-                {{-- $wire.set('nome', this.produto.nome)
-                $wire.set('descricao', this.produto.descricao)
-                $wire.set('quantidade', this.produto.qtd_estoque)
-                $wire.set('preco', this.produto.preco)
-                $wire.set('importado', this.produto.importado) --}}
-                $wire.set('produto',this.produto)
-                $wire.update(this.produto.id)
+                $wire.update(this.produto)
             } else {
                 alert('Erro ao atualizar produto!')
             }
         },
         start() {
             this.produto.importado = this.produto.importado == 1
-        },
+        }
     }" x-init="start()">
         <form @submit.prevent="update()" id="produto-update-{{ $produto->id }}">
             <table>
@@ -46,6 +42,20 @@
                 <tr>
                     <td>Importado:</td>
                     <td><input x-model="produto.importado" type="checkbox" name="importado" /></td>
+                </tr>
+                <tr>
+                    <td>Fornecedor:</td>
+                    <td>
+                        <select x-ref="select" required min='1' name="fornecedor" x-model="produto.fornecedor_id">
+                            <template x-for="fornecedor in fornecedores">
+                                <option
+                                    x-bind:selected="fornecedor.id === produto.fornecedor_id"
+                                    x-bind:value="fornecedor.id"
+                                    x-text="fornecedor.nome"
+                                    />
+                            </template>
+                        </select>
+                    </td>
                 </tr>
             </table>
         </form>
