@@ -26,8 +26,21 @@
                 <td>Importado:</td>
                 <td><input type="checkbox" name="importado" /></td>
             </tr>
+            </tr>
+                <td>Fornecedor:</td>
+                <td>
+                    <select  required min='1' name="fornecedor_id">
+                        <option value=0 selected placeholder>Escolha um Fornecedor:</option>
+                        @foreach($fornecedores as $fornecedor)>
+                            <option value="{{$fornecedor->id}}">{{$fornecedor->nome}}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
         </table>
     </form>
-    <input type="submit" value="Criar" form='create'/>
-    <a href="/dashboard"><button>Cancelar</button></a>
+    <div class='flex mt-4 justify-center gap-24 w-full'>
+        <a href="/dashboard"><x-secondary-button class='w-30'>Cancelar</x-secondary-button></a>
+        <x-primary-button class='w-30' type="submit" value="Criar" form='create'>Criar</x-primary-button>
+    </div>
 </x-dash-layout>
