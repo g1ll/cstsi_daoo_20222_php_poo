@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Fornecedor;
 use App\Models\Produto;
 use Exception;
 use Livewire\Component;
@@ -9,18 +10,18 @@ use Illuminate\Support\Facades\Log;
 
 class Products extends Component
 {
-    public $produtos;
+    public $produto;
+    public $listFornecedores;
+    public $listProdutos;
     public $orderAsc = true;
     public $orderColumn = 'id';
 
-    public $nome;
-    public $descricao;
-    public $quantidade;
-    public $preco;
-    public $importado;
-    public $idprod;
 
-    public $produto;
+
+    public function mount()
+    {
+        $this->getFornecedores();
+    }
 
     public function render()
     {
@@ -30,44 +31,33 @@ class Products extends Component
     public function orderBy($column = 'id')
     {
         $this->orderColumn = $column;
-        $this->produtos = Produto::orderBy(
+        $this->listProdutos = Produto::orderBy(
             $this->orderColumn,
             $this->orderAsc ? 'asc' : 'desc'
-        )->get();
-        $this->orderAsc = !$this->orderAsc;
+        )->limit(10)->get();
+        // $this->orderAsc = !$this->orderAsc;
         //debugando variavel na saida do servidor
-        Log::channel('stderr')->info($this->orderAsc?'asc':'desc');
+        $this->log($this->orderAsc?'asc':'desc');
     }
 
-    public function orderByName()
-    {
-        $this->orderBy('nome');
-    }
-
-    public function orderByPrice()
-    {
-        $this->orderBy('preco');
+    public function getFornecedores(){
+        foreach(Fornecedor::all()->pluck('nome','id') as $id=>$nome)
+            $this->listFornecedores[]=["id"=>$id,'nome'=>$nome];
     }
 
     public function save()
     {
-        $produto = [
-            "nome" => $this->nome,
-            "descricao" => $this->descricao,
-            "preco" => $this->preco,
-            "qtd_estoque" => $this->quantidade,
-            "importado" => $this->importado ? true : false,
-        ];
-
-        // dd($produto);
-
+        $novoProduto = $this->produto;
+        $novoProduto['qtd_estoque'] = $this->produto['qtdEstoque'];
+        $novoProduto['fornecedor_id'] = $this->produto['fornecedor'];
         try {
-            Produto::create($produto);
+            Produto::create($novoProduto);
+            $this->log(['saved',$novoProduto]);
             $this->clear();
             $this->orderAsc = false;
             $this->orderBy();
         } catch (Exception $e) {
-            dd('Erro ao inserir');
+            dd($e->getMessage());
         }
     }
 
@@ -84,12 +74,17 @@ class Products extends Component
         $this->orderBy($this->orderColumn);
     }
 
-    public function update($id)
+    public function update($updatedProduto)
     {
-        Log::channel('stderr')->info(print_r($this->produto['nome'],true));
-        Produto::findOrFail($id)->update($this->produto);
+        $this->produto = $updatedProduto;
+        $this->log(['updated',$this->produto]);
+        Produto::findOrFail($this->produto['id'])->update($this->produto);
         $this->orderAsc = !$this->orderAsc;
         $this->orderBy($this->orderColumn);
         $this->clear();
+    }
+
+    private function log($var){
+        Log::channel('stderr')->info(print_r($var,true));
     }
 }
