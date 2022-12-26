@@ -23,8 +23,32 @@
                 <td>Importado:</td>
                 <td><input type="checkbox" name="importado" {{($produto->importado)?'checked':''}}/></td>
             </tr>
+        </tr>
+        <td>Fornecedor:</td>
+        <td>
+            <select  required min='1' name="fornecedor_id">
+                @foreach($fornecedores as $fornecedor)>
+                    {{-- @if($fornecedor->id == $produto->fornecedor_id)
+                        <option selected value="{{$fornecedor->id}}">{{$fornecedor->nome}}</option>
+                    @else
+                        <option value="{{$fornecedor->id}}">{{$fornecedor->nome}}</option>
+                    @endif --}}
+                    <option
+                        {{$fornecedor->id == $produto->fornecedor_id?'selected':''}}
+                         value="{{$fornecedor->id}}">
+                            {{$fornecedor->nome}}
+                    </option>
+                @endforeach
+            </select>
+        </td>
+    </tr>
         </table>
     </form>
-    <input form=edit type="submit" name='confirmar' value="Salvar"/>
     <a href="/dashboard"><button>Cancelar</button></a>
+    <div class='flex justify-center gap-24 w-full'>
+        <a href="{{ route('dashboard') }}">
+            <x-secondary-button>Cancelar</x-secondary-button>
+        </a>
+        <x-primary-button name='confirmar' form="edit">Atualizar</x-primary-button>
+    </div>
 </x-dash-layout>
