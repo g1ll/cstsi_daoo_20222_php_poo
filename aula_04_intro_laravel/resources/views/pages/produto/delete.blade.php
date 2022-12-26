@@ -6,12 +6,30 @@
             <li>Quantidade: {{ $produto->qtd_estoque }}</li>
             <li>Preço: {{ $produto->preco }}</li>
             <li>Importado: {{ $produto->importado ? 'Sim' : 'Não' }}</li>
+            <li>Fornecedor:{{ $produto->fornecedor->nome }}</li>
         </ul>
         <form action="{{ route('remove', $produto->id) }}" method="post">
             @csrf
             <h4 style="color:red;font-weight:bold">Confirmar a exclusão deste item?</h4>
-            <input type="submit" name='confirmar' value="Deletar" />
-            <input type="submit" name='confirmar' value="Cancelar" />
+            <tr align="center">
+                <td>
+                    <a href="{{route('dashboard')}}">
+                        <x-secondary-button >
+                            Cancelar
+                        </x-secondary-button>
+                    </a>
+                </td>
+                <td>
+                    <x-danger-button
+                        class='px-2 py-1 mx-0 my-0'
+                        @click="idmodal=null;"
+                        type="submit"
+                        name='confirmar'
+                        >
+                        Deletar
+                    </x-danger-button>
+                </td>
+            </tr>
         </form>
     @else
         <p>Produtos não encontrados! </p>
