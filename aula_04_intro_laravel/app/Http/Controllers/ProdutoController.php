@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 use App\Models\Produto;
-use Illuminate\Support\Facades\Log;
 
 class ProdutoController extends Controller
 {
     public function index()
     {
         $modelProduto = new Produto();
-        $produtos = $modelProduto->paginate();
-        Log::channel('stderr')->info(print_r($produtos->items(),true));
         return view('pages.produto.index',
-        ['produtos' => $modelProduto->all()]);
+        ['produtos' => $modelProduto->limit(10)->get()]);
     }
 
     public function show($id)
     {
-
-        // dd(Produto::find($id));
         return view(
             'pages.produto.single',
             ['produto' => Produto::find($id)]
@@ -29,30 +25,38 @@ class ProdutoController extends Controller
 
     public function create()
     {
-        return view('pages.produto.create');
+        return view('pages.produto.create',
+            ['fornecedores'=>Fornecedor::all()]
+        );
     }
 
     public function store(Request $request)
     {
-        $newProduto = $request->all();
-        $newProduto['importado'] = ($request->importado) ? true : false;
-        if (Produto::create($newProduto))
-            return redirect('/dashboard');
-        else dd("Error ao criar produto!!");
+        if ($request->has('confirmar')){
+            $newProduto = $request->all();
+            $newProduto['importado'] = $request->has('importado');
+            if (!Produto::create($newProduto))
+                dd("Error ao criar produto!!");
+        }
+        return redirect('/dashboard');
     }
 
     public function edit($id)
     {
-        return view('pages.produto.edit', ['produto' => Produto::find($id)]);
+        return view('pages.produto.edit', [
+                'produto' => Produto::find($id),
+                'fornecedores'=>Fornecedor::all()
+            ]);
     }
 
     public function update(Request $request, $id)
     {
-        $updatedProduto = $request->all();
-        $updatedProduto['importado'] = $request->importado && true;
-        // dd($updatedProduto);
-        if (!Produto::find($id)->update($updatedProduto))
-            dd("Erro ao atualizar produto $id!");
+        if($request->has('confirmar')){
+            $updatedProduto = $request->all();
+            $updatedProduto['importado'] = $request->has('importado');
+            if (!Produto::find($id)->update($updatedProduto))
+                dd("Erro ao atualizar produto $id!");
+        }
         return redirect('/dashboard');
     }
 
@@ -60,14 +64,13 @@ class ProdutoController extends Controller
     {
         return view(
             'pages.produto.delete',
-            ['produto' => Produto::find($id)]
+            ['produto' => Produto::find($id)->load('fornecedor')]
         );
     }
 
     public function remove(Request $request, $id)
     {
-        //if(!Produto::find($id)->delete())
-        if ($request->confirmar == 'Deletar')
+        if ($request->has('confirmar'))
             if (!Produto::destroy($id))
                 dd("Error ao deletar produto $id.");
         return redirect('/dashboard');
