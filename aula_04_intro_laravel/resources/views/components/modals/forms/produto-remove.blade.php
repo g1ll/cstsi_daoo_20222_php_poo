@@ -4,6 +4,7 @@
         <li>Quantidade: {{ $produto->qtd_estoque }}</li>
         <li>Preço: {{ $produto->preco }}</li>
         <li>Importado: {{ $produto->importado ? 'Sim' : 'Não' }}</li>
+        <li>Fornecedor: {{$fornecedor['nome'] }}</li>
     </ul>
     <form id="{{ $produto->id }}" wire:submit.prevent="remove({{ $produto->id }})" method="POST">
         <h4 style="color:red;font-weight:bold">Confirmar a exclusão deste item?</h4>
