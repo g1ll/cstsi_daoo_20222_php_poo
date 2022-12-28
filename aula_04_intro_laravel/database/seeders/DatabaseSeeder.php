@@ -16,10 +16,15 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'User Aula 06',
-        //     'email' => 'aula@example.com',
-        // ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'idade'=>34,
+            'is_admin'=>true
+        ]);
+
+        \App\Models\User::factory(3)->create();
+
 
         $seedRegiao = new RegiaoSeeder();
         $seedRegiao->run();
