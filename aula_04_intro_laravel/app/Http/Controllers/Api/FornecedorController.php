@@ -31,7 +31,12 @@ class FornecedorController extends Controller
      */
     public function store(Request $request)
     {
+        $statusHttp=500;
         try {
+            if (!$request->user()->tokenCan('is-admin')) {
+                $statusHttp = 403;
+                throw new \Exception("Não possui permissão!!!");
+            }
             $newFornecedor = $request->all();
             $storedFornecedor = Fornecedor::create($newFornecedor);
             return response()->json([
@@ -43,8 +48,7 @@ class FornecedorController extends Controller
                 "Erro:" => "Erro ao cadastrar novo Fornecedor",
                 "Exception:" => $error->getMessage()
             ];
-            $status = 401; //bad request
-            return response()->json($message, $status);
+            return response()->json($message, $statusHttp);
         }
     }
 
@@ -68,6 +72,7 @@ class FornecedorController extends Controller
      */
     public function update(Request $request, Fornecedor $fornecedor)
     {
+        $statusHttp=500;
         try {
             $data = $request->all();
             $fornecedor->update($data);
@@ -80,8 +85,7 @@ class FornecedorController extends Controller
                 "Erro:" => "Erro ao atualizar fornecedor",
                 "Exception:" => $error->getMessage()
             ];
-            $status = 401;
-            return response()->json($message, $status);
+            return response()->json($message, $statusHttp);
         }
     }
 
@@ -111,10 +115,10 @@ class FornecedorController extends Controller
         }
     }
 
-    public function Fornecedors(Fornecedor $fornecedor)
+    public function produtos(Fornecedor $fornecedor)
     {
         return response()->json([
-            ['fornecedor'=>$fornecedor->load('Fornecedors')]
+            ['fornecedor'=>$fornecedor->load('produtos')]
         ]);
     }
 }
