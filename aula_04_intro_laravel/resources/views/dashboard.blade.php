@@ -16,7 +16,9 @@
                                 <x-primary-button class='mb-2'>Novo Produto</x-primary-button>
                             </a>
                         </div>
-                        <x-tables.produtos :produtos="$produtos" class='table-odd' type='hover' />
+                        {{$produtos->links()}}
+                        <x-tables.produtos :produtos="collect($produtos->items())" class='table-odd' type='hover' />
+                        {{$produtos->links()}}
                     @else
                         <p>Produtos não encontrados! </p>
                     @endif
