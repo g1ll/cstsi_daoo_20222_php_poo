@@ -20,14 +20,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('produto',[ProdutoController::class,'index']);
-Route::get('produto/{id}',[ProdutoController::class,'show']);
-Route::post('produto',[ProdutoController::class,'store']);
-Route::put('produto/{id}',[ProdutoController::class,'update']);
-Route::delete('produto/{id}',[ProdutoController::class,'remove']);
+Route::get('produtos',[ProdutoController::class,'index']);
+Route::get('produtos/{id}',[ProdutoController::class,'show']);
+Route::post('produtos',[ProdutoController::class,'store']);
+Route::put('produtos/{id}',[ProdutoController::class,'update']);
+Route::delete('produtos/{id}',[ProdutoController::class,'remove']);
 
-Route::apiResource('fornecedor',FornecedorController::class);
-Route::get('fornecedor/{fornecedor}/produtos',
+Route::apiResource('fornecedores',FornecedorController::class)
+    ->parameters([
+        'fornecedores'=>'fornecedor'
+    ]);
+Route::get('fornecedores/{fornecedor}/produtos',
         [FornecedorController::class,
         'produtos'
     ]);
