@@ -25,7 +25,6 @@
 
                 <td>{{ $produto->qtd_estoque }}</td>
                 <td>{{ $produto->preco }}</td>
-                {{-- <td>{{($produto->importado)?'Sim':'Não'}}</td> --}}
                 <td align="center">
                     <input type="checkbox" disabled {{ $produto->importado ? 'checked' : '' }}>
                 </td>
