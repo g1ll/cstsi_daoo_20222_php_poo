@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "ae015d76-3335-4043-8e2e-6d7a28698164",
-		"name": "FORNECEDOR",
+		"name": "FORNECEDORES",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8976781"
 	},
@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/fornecedor/",
+					"raw": "http://localhost:8000/api/fornecedores/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,7 +20,7 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"fornecedor",
+						"fornecedores",
 						""
 					]
 				}
@@ -30,14 +30,30 @@
 		{
 			"name": "STORE",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|KYqhyW6nGMH3ReIsHbu8PTq2zaZr7gxPL5HVSRH0",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
 							"key": "nome",
-							"value": " Fornecedor Teste",
+							"value": " Fornecedor Teste GILL",
 							"type": "text"
 						},
 						{
@@ -68,7 +84,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/fornecedor/",
+					"raw": "http://localhost:8000/api/fornecedores/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -76,7 +92,7 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"fornecedor",
+						"fornecedores",
 						""
 					]
 				}
@@ -86,16 +102,32 @@
 		{
 			"name": "SHOW",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|KJJMu0Oi1dOx1SLIZfWviD5FVPysUOmsZxSvlbWj",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Accept",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|zX9ZHuatbXrwmM8AoAdbfytbLyx4O2m1hpGxM47s",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/fornecedor/82",
+					"raw": "http://localhost:8000/api/fornecedores/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -103,8 +135,8 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"fornecedor",
-						"82"
+						"fornecedores",
+						"5"
 					]
 				}
 			},
@@ -162,7 +194,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/fornecedor/82",
+					"raw": "http://localhost:8000/api/fornecedores/82",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -170,7 +202,7 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"fornecedor",
+						"fornecedores",
 						"82"
 					]
 				}
@@ -180,6 +212,16 @@
 		{
 			"name": "UPDATE (URL ENCODED)",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|KYqhyW6nGMH3ReIsHbu8PTq2zaZr7gxPL5HVSRH0",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
@@ -193,7 +235,7 @@
 					"urlencoded": [
 						{
 							"key": "nome",
-							"value": " Fornecedor Teste PUT",
+							"value": "Abilidade Fornecedor Teste PUT",
 							"type": "text"
 						},
 						{
@@ -224,7 +266,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/fornecedor/82",
+					"raw": "http://localhost:8000/api/fornecedores/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -232,8 +274,8 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"fornecedor",
-						"82"
+						"fornecedores",
+						"5"
 					]
 				}
 			},
@@ -255,7 +297,7 @@
 					"urlencoded": []
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/fornecedor/82",
+					"raw": "http://localhost:8000/api/fornecedores/82",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -263,7 +305,7 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"fornecedor",
+						"fornecedores",
 						"82"
 					]
 				}
@@ -273,6 +315,16 @@
 		{
 			"name": "FORNECEDOR/PRODUTOS",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|zX9ZHuatbXrwmM8AoAdbfytbLyx4O2m1hpGxM47s",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -282,7 +334,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/fornecedor/81/produtos",
+					"raw": "http://localhost:8000/api/fornecedores/1/produtos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -290,8 +342,8 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"fornecedor",
-						"81",
+						"fornecedores",
+						"1",
 						"produtos"
 					]
 				}
