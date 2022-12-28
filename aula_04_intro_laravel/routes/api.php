@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\FornecedorController;
 use App\Http\Controllers\Api\ProdutoController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')
+    ->get('/user', function (Request $request) {
+                return $request->user();
+    });
 
 Route::get('produtos',[ProdutoController::class,'index']);
 Route::get('produtos/{id}',[ProdutoController::class,'show']);
@@ -26,11 +29,22 @@ Route::post('produtos',[ProdutoController::class,'store']);
 Route::put('produtos/{id}',[ProdutoController::class,'update']);
 Route::delete('produtos/{id}',[ProdutoController::class,'remove']);
 
-Route::apiResource('fornecedores',FornecedorController::class)
+Route::middleware('auth:sanctum')->group(function(){
+    Route::apiResource('fornecedores',FornecedorController::class)
     ->parameters([
         'fornecedores'=>'fornecedor'
     ]);
-Route::get('fornecedores/{fornecedor}/produtos',
+
+    Route::get('fornecedores/{fornecedor}/produtos',
         [FornecedorController::class,
         'produtos'
     ]);
+
+    Route::put('/fornecedores/{fornecedor}',[FornecedorController::class,'update'])
+        ->middleware('ability:is-admin');
+
+    Route::apiResource('users',UserController::class);
+});
+
+Route::post('/users',[UserController::class,'store']);
+Route::post('login',[LoginController::class,'login']);
