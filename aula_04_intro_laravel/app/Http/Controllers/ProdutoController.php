@@ -12,7 +12,7 @@ class ProdutoController extends Controller
     {
         $modelProduto = new Produto();
         return view('pages.produto.index',
-        ['produtos' => $modelProduto->limit(10)->get()]);
+        ['produtos' => $modelProduto->paginate(15)]);
     }
 
     public function show($id)
