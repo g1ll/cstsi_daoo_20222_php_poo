@@ -31,7 +31,8 @@ class Model
                 $this->params .= " :$key,";
                 $this->columns .= " $key,";
                 $this->values[":$key"] = is_bool($value) ? (int)$value : $value;
-                $this->updated .= " `$key` = :$key,";
+                $this->updated .= " `$key` = :$key,";//MYSQL
+                // $this->updated .= " \"$key\" = :$key,";//POSTGRE
             }
             $this->params = substr($this->params, 0, strlen($this->params) - 1);
             $this->columns = substr($this->columns, 0, strlen($this->columns) - 1);
