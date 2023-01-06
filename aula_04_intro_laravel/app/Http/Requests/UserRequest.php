@@ -23,18 +23,20 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $isRequired = $this->isMethod('post');
+
         return [
-            'name'      => 'required | string | max:50',
-            'email'     => 'required | email | unique:users',
-            'password'  => 'required | min:8',
-            'is_admin'  =>  'nullable | boolean',
-            'idade' => 'required | numeric | min:18 | max:100'
+            'name'      => $isRequired ? 'required' : 'nullable' . ' | string | max:255 | min:5',
+            'email'     => $isRequired ? 'required' : 'nullable' . ' | email | unique:users',
+            'password'  => $isRequired ? 'required' : 'nullable' . ' | string | min:8',
+            'idade'     => $isRequired ? 'required' : 'nullable' . ' | numeric | min:18 | max:100',
+            'is_admin'  => 'nullable | boolean'
         ];
     }
 
     public function messages()
     {
-        return[
+        return [
             'name.require'      => 'O nome é obrigatório!!',
             'name.max'          => 'O nome deve ter nomáximo 50 caracteres!',
             'email.require'     => 'O email é obrigatório!!',
