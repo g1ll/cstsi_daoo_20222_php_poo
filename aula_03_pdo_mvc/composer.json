@@ -15,6 +15,8 @@
     "require": {},
     "scripts":{
         "api":"php -S localhost:8081 src/index.php",
-        "test":"php -S localhost:8080 -t src/tests/"
+        "test":"php -S localhost:8080 -t src/tests/",
+        "kill":"kill -9  $(ps -ax -o pid,command| grep 'php -S localhost:8081' | grep -v 'grep' | head -n 1 | cut -f 2 -d ' ')",
+        "restart": "composer run kill; composer run api"
     }
 }
