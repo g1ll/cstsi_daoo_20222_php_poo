@@ -2,6 +2,8 @@
 
 namespace Daoo\Aula03\model;
 
+use Exception;
+
 class Produto extends Model implements DAO
 {
     private $id, $nome, $descricao, 
@@ -40,7 +42,8 @@ class Produto extends Model implements DAO
         } catch (\Exception $error) {
             error_log("ERRO: " . print_r($error, TRUE));
             $this->dumpQuery($prepStmt);
-            return false;
+            throw new Exception($error->getMessage());
+            // return false;
         }
     }
 
