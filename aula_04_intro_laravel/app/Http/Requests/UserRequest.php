@@ -23,13 +23,13 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        $isRequired = $this->isMethod('post');
+        $isRequired = $this->isMethod('post')? 'required' : 'nullable';
 
         return [
-            'name'      => $isRequired ? 'required' : 'nullable' . ' | string | max:255 | min:5',
-            'email'     => $isRequired ? 'required' : 'nullable' . ' | email | unique:users',
-            'password'  => $isRequired ? 'required' : 'nullable' . ' | string | min:8',
-            'idade'     => $isRequired ? 'required' : 'nullable' . ' | numeric | min:18 | max:100',
+            'name'      => $isRequired . ' | string | max:255 | min:5',
+            'email'     => $isRequired . ' | email | unique:users',
+            'password'  => $isRequired . ' | string | min:8',
+            'idade'     => $isRequired . ' | numeric | min:18 | max:100',
             'is_admin'  => 'nullable | boolean'
         ];
     }

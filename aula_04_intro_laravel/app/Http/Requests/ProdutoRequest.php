@@ -23,8 +23,9 @@ class ProdutoRequest extends FormRequest
      */
     public function rules()
     {
+        $isRequired = $this->isMethod('POST')?'required':'nullable';
         return [
-            'qtd_estoque'=> 'required | min:1 | numeric ',
+            'qtd_estoque' =>  $isRequired.' | min:1 | numeric ',
             'importado' => 'nullable | boolean'
         ];
     }
