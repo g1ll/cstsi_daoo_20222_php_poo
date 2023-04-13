@@ -27,7 +27,7 @@ Route::get('produtos',[ProdutoController::class,'index']);
 Route::get('produtos/{id}',[ProdutoController::class,'show']);
 Route::post('produtos',[ProdutoController::class,'store']);
 Route::put('produtos/{id}',[ProdutoController::class,'update'])
-        ->middleware(['auth:sanctum','ability:is-admin']);  
+        ->middleware(['auth:sanctum','ability:is-admin']);
 Route::delete('produtos/{id}',[ProdutoController::class,'remove']);
 
 Route::middleware('auth:sanctum')->group(function(){
@@ -49,3 +49,22 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::post('/users',[UserController::class,'store']);
 Route::post('login',[LoginController::class,'login']);
+
+
+Route::prefix('app')->middleware('app_api_key')->group(function(){
+
+    Route::get('{api_key}/{name}', function (Request $request) {
+        return response()->json([
+            'name' => $request->name,
+        ]);
+    });
+
+    Route::post('{name}', function (Request $request) {
+        return response()->json([
+            'name' => $request->name,
+        ]);
+    });
+
+});
+
+
