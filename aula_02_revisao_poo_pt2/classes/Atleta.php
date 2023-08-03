@@ -2,9 +2,10 @@
 
 namespace classes;
 
-use \classes\traits\IMC;
+use classes\traits\IMC;
 
-class Atleta extends Pessoa
+// class Atleta extends Pessoa
+class Atleta extends Pessoa implements iFuncionario
 {
 	use IMC;
 
@@ -24,7 +25,7 @@ class Atleta extends Pessoa
 	public function showIMC()
 	{
 		if (!$this->imc) echo "O IMC ainda não foi calculado!";
-		echo "\nIMC $this->nome: $this->imc\n";
+		echo "\nIMC $this->nome: ".number_format($this->imc,2)."\n";
 	}
 
 	public function setAltura($altura)
@@ -81,5 +82,15 @@ class Atleta extends Pessoa
 						:"")
 					."\n==================\n";
 
+	}
+
+	public function mostrarSalario(): string
+	{
+		return "Salário Atleta R$240.000,00";
+	}
+
+	public function mostrarTempoContrato(): string
+	{
+		return "Contrato de Um Ano";
 	}
 }

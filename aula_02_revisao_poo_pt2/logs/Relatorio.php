@@ -1,5 +1,7 @@
 <?php
 namespace logs;
+
+use classes\iFuncionario;
 use classes\Pessoa;
 
 class Relatorio {
@@ -13,7 +15,10 @@ class Relatorio {
 	
 	public function log(Pessoa $pessoa)
 	{
-		echo "\nlog: ".$pessoa;
+		echo "\nlog: ".$pessoa."\n";
+		if($pessoa instanceof iFuncionario)
+		echo $pessoa->mostrarSalario()."\n"
+			 .$pessoa->mostrarTempoContrato();
 	}
 
 	public function imprime(){

@@ -1,7 +1,7 @@
 <?php
 namespace classes;
 
-class Medico extends Pessoa{
+class Medico extends Pessoa implements iFuncionario{
 
 	private $CRM, $especialidade;
 
@@ -9,7 +9,7 @@ class Medico extends Pessoa{
 	{
 		$this->nome = $nome;
 		$this->idade = $idade;
-		$this->crm = $crm;
+		$this->CRM = $crm;
 		$this->especialidade = $especialidade;
 	}
 
@@ -24,6 +24,16 @@ class Medico extends Pessoa{
 			. "\nNome: $this->nome"
 			. ($this->idade ? "\nIdade: $this->idade" : "")
 			. "\nEspecialidade: $this->especialidade"
-			. "\nCRM: $this->crm\n";
+			. "\nCRM: $this->CRM\n";
+	}
+
+	public function mostrarSalario(): string
+	{
+		return "Salário Médico R$40.000,00";
+	}
+
+	public function mostrarTempoContrato(): string
+	{
+		return "Contrato Tempo Indetermindado";
 	}
 }
