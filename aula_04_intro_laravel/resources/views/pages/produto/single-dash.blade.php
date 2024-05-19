@@ -1,8 +1,7 @@
 <x-dash-layout>
 <div class="text-center mt-8">
-    @vite('resources/css/show-prod.css')
     @if ($produto)
-        <h1 class='my-12 text-4xl font-bold'>{{ $produto->nome }}</h1>
+        <h1 class='my-12 text-4xl font-bold'>Nome: {{ $produto->nome }}</h1>
         <p>{{ $produto->descricao }}</p>
         <table>
             </thead>

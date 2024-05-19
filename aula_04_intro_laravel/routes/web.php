@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing',
+    return view('pages.land',
     ['produtos' => Produto::all()]);
 })->name('landing');
 
 Route::get('/dashboard', function () {
     return view(
-        'dashboard',
+        'admin.dashboard',
         [
             'produtos' => Produto::paginate(15),
             'users' => User::all()

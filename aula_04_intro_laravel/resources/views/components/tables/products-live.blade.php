@@ -23,9 +23,9 @@
             <th><a href="#" @click=" orderBy('qtd_estoque')">qtd_estoque</a></th>
             <th><a href="#" @click=" orderBy('preco')">Preco</a></th>
             <th>Importado</th>
-            @if (Auth::user())
-                <th colspan="2">Acoes</th>
-            @endif
+            @auth
+                <th colspan="2">Ações</th>
+            @endauth
         </tr>
     </thead>
     <tbody>

@@ -15,10 +15,13 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
+    private string $viewPath = "admin.profile.";
+
     public function edit(Request $request)
     {
-        return view('profile.edit', [
+        return view($this->viewPath.'edit', [
             'user' => $request->user(),
+            'partials'=>$this->viewPath.'partials'
         ]);
     }
 
@@ -38,7 +41,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('admin.profile.edit')->with('status', 'profile-updated');
     }
 
     /**

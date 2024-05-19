@@ -1,6 +1,5 @@
 <x-main-layout>
-<div class="text-center mt-8">
-    @vite('resources/css/show-prod.css')
+<div class="mt-8 text-center">
     @if ($produto)
         <h1 class='my-12 text-4xl font-bold'>{{ $produto->nome }}</h1>
         <p>{{ $produto->descricao }}</p>
@@ -28,8 +27,10 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ route('edit', $produto->id) }}"><button>editar</button></a>
-        <a href="{{ route('delete', $produto->id) }}"><button>deletar</button></a>
+        @auth
+            <a href="{{ route('edit', $produto->id) }}"><button>editar</button></a>
+            <a href="{{ route('delete', $produto->id) }}"><button>deletar</button></a>
+        @endauth
     @else
         <p>Produtos não encontrados! </p>
     @endif

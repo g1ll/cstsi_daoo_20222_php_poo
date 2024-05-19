@@ -45,7 +45,7 @@
         </table>
     </form>
     <a href="/dashboard"><button>Cancelar</button></a>
-    <div class='flex justify-center gap-24 w-full'>
+    <div class='flex justify-center w-full gap-24'>
         <a href="{{ route('dashboard') }}">
             <x-secondary-button>Cancelar</x-secondary-button>
         </a>

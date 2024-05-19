@@ -25,7 +25,7 @@ class Products extends Component
 
     public function render()
     {
-        return view('livewire.products');
+        return view('components.live.products');
     }
 
     public function orderBy($column = 'id')
