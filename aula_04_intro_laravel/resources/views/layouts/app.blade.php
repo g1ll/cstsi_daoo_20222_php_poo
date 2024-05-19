@@ -12,6 +12,9 @@
         @livewireStyles
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @if(Route::match(['get'],'produto'))
+            @vite('resources/css/show-prod-green.css')
+        @endif
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
