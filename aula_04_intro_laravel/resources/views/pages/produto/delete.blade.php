@@ -1,6 +1,6 @@
 <x-dash-layout>
     @if ($produto)
-        <h1>{{ $produto->nome }}</h1>
+        <h1 class="text-2xl font-bold text-center text-blue-700">{{ $produto->nome }}</h1>
         <p>{{ $produto->descricao }}</p>
         <ul>
             <li>Quantidade: {{ $produto->qtd_estoque }}</li>
