@@ -1,5 +1,6 @@
 <x-dash-layout>
     <h1>Insert new Produto</h1>
+    <div x-init="console.log('I\'m being initialized!')">
     <form id=edit action="{{route('update',$produto->id)}}" method="POST">
         @csrf
         <table>
@@ -23,6 +24,10 @@
                 <td>Importado:</td>
                 <td><input type="checkbox" name="importado" {{($produto->importado)?'checked':''}}/></td>
             </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="tel" x-mask="(99) 99999-9999" placeholder="(99) 99999-9999" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}"></td>
+            </tr>
         </tr>
         <td>Fornecedor:</td>
         <td>
@@ -44,7 +49,8 @@
     </tr>
         </table>
     </form>
-    <a href="/dashboard"><button>Cancelar</button></a>
+</div>
+    {{-- <a href="/dashboard"><button>Cancelar</button></a> --}}
     <div class='flex justify-center w-full gap-24'>
         <a href="{{ route('dashboard') }}">
             <x-secondary-button>Cancelar</x-secondary-button>
