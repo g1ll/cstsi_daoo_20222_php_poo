@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.land',
-    ['produtos' => Produto::all()]);
+    // dd(Produto::all()->load('fornecedor')->first()->fornecedor->nome);
+    return view('pages.land',['produtos' => Produto::all()->load('fornecedor')]);
 })->name('landing');
 
 Route::get('/dashboard', function () {
